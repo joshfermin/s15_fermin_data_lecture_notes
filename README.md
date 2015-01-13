@@ -1,2 +1,5 @@
-# s15_fermin_data_lecture_notes
-Data Engineering lecture notes
+# Lecture notes for Data Engineering in Spring 2015 
+Josh Fermin
+
+## Lecture 1 
+
