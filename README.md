@@ -2,10 +2,10 @@
 Josh Fermin
 
 Lecture 1 
-========
+=========
+1/13/2015 
 
-Big Data:
-============
+##Big Data:
 
 #### Data analytics
   - Sampling ... Machine Learning
@@ -30,8 +30,7 @@ Big Data:
   - excel / R (data analysis)
 
 
-Data Lifecycle
-==============
+##Data Lifecycle
 0. Question
   * Curation / Triage Persistence  - prioritization of data sources
   * Which source will give me the answer?
@@ -43,4 +42,17 @@ Data Lifecycle
   * This usually gives you new questions
 
 This lifecycle is in many startup companies that do big data
+Teams of people within each step.
+
+
+##Request Response Cycle
+http://
+http request methods
+  * GET
+  * POST
+  * PUT
+  * DELETE
+
+Some request comes out, associated with url
+server recieves url maps request to file and returns back a response
 
