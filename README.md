@@ -66,7 +66,7 @@ Web Bowser -> Web Server <- ebay.com/products/10
   * I.e. different requests could correspond to different servers storing different images that have to be loaded on same page.
 * Desired response time is 2 seconds. Anything longer, and you will start to lose a lot of users.
 
-
+## Amazon - Example
 * Want to modularize templates - Calls to web services that return in a JSON format.
 * JavaScript then assembles data in memory and returns in html to div.
 
