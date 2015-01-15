@@ -105,3 +105,8 @@ end
   # will return json object: {"status":true,"message":"2015-01-15 13:38:16 -0700"}
 ```
 
+#### Issues with Homework
+* Database? How to persist info
+* Ids 
+* input/output
+* errors
