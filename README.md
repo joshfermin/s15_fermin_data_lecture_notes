@@ -1,9 +1,6 @@
-# Lecture notes for Data Engineering in Spring 2015 
-Josh Fermin
-
 Lecture 1 
 =========
-1/13/2015 
+Josh Fermin - 1/13/2015 
 
 ##Big Data:
 
@@ -45,6 +42,12 @@ This lifecycle is in many startup companies that do big data
 Teams of people within each step.
 
 
+
+
+Lecture 2
+=========
+Josh Fermin - 1/15/2015
+
 ##Request Response Cycle
 http://
 http request methods
@@ -53,6 +56,19 @@ http request methods
   * PUT
   * DELETE
 
-Some request comes out, associated with url
-server recieves url maps request to file and returns back a response
+Some request comes out, associated with url, server recieves url, maps request to file and returns back a response
 
+Web Bowser -> Web Server <- ebay.com/products/10
+* Passes /products/10 to web server
+  * will get handled as a GET / POST / DELETE / PUT 
+  * Web Server passes request off to handler(s) 
+  * Server now has to wait until handler(s) comes back with response to give to user
+  * I.e. different requests could correspond to different servers storing different images that have to be loaded on same page.
+* Desired response time is 2 seconds. Anything longer, and you will start to lose a lot of users.
+
+
+* Want to modularize templates - Calls to web services that return in a JSON format.
+* JavaScript then assembles data in memory and returns in html to div.
+
+  
+  
