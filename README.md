@@ -70,5 +70,38 @@ Web Bowser -> Web Server <- ebay.com/products/10
 * Want to modularize templates - Calls to web services that return in a JSON format.
 * JavaScript then assembles data in memory and returns in html to div.
 
+## REST 
+* Representation - Resources all over the world, you ask for one and that will be conveyed to you in some sort of representation
+  * Resources referenced by URIs (URLs are URIs)
+  * CRUD operations 
+    * Create 
+    * Read
+    * Update
+    * Destroy
+* State
+* Transfer
+
+#### Users Example
+* /users/{id}
+  * GET - Read current state of users or get user id
+  * POST - Create a new user { data }
+  * PUT - Update an existing user
+  * DELETE - Destroy a user
   
-  
+#### Time example 
+```ruby 
+require 'sinatra' # dont use sinatra in production
+require 'json'
+
+configure do
+	set :port, 3000
+end
+
+get '/api/1.0/whattimeisit' do
+	{ status: true, message: Time.now}.to_json + "\n"
+end
+
+# curl http://localhost:3000/api/1.0/whattimeisit
+  # will return json object: {"status":true,"message":"2015-01-15 13:38:16 -0700"}
+```
+
