@@ -105,8 +105,82 @@ end
   # will return json object: {"status":true,"message":"2015-01-15 13:38:16 -0700"}
 ```
 
-#### Issues with Homework
+#### Issues
 * Database? How to persist info
 * Ids 
 * input/output
 * errors
+
+
+
+
+Lecture 3
+=========
+Josh Fermin - 1/20/2015
+
+##Restful Web Services
+* Architectural style for web services
+	- Invented by Roy Fielding
+* Approach to developing web services
+* Service provides access to a linked set of resources
+* For each resource you can perform operations on it simliar to the main operations
+
+#### API Examples
+```javascript
+GET /api/1.0/users
+//Retrieve list of users
+
+GET /api/1.0/users/0
+//Retrieve details of user 0
+
+POST /api/1.0/users
+//create a new user
+```
+* /api/1.0 is convention so that you can update your api
+	* i.e. /api/1.1/users
+	* keep your other api url running for transition
+
+```javascript
+PUT /api/1.0/users/0
+Update user 0
+
+DELETE /api/1.0/users/0
+Delete user 0
+
+GET /api/1.0/search?q=tattersail
+Perform a search with the query tattersail.
+```
+
+#### Discussion - Request Response cycle
+* Each operation may produce a result - Synchronously
+	* With RESTful services, JSON format is king
+* JSON - highly compressible
+* Asynchronously - Use AJAX calls.
+* POST and PUT methods typically send data
+	* Also in JSON format
+	* May be in the URL or in the body of the HTTP Request
+		* GET, data may appear as query params
+* Other formats are possible: HTML and XML are typical
+* If a request needs to be authenticated
+	* the authentication data appears in HTTP headers
+	* i.e. used for DELETE - dont want just anyone to be able to delete users
+
+#### Discussion - How do you think operations on two resources are handled?
+```javascript
+GET /api/1.0/posts/0/comments/1
+Get the first comment on post 0
+
+POST /api/1.0/posts/0/comments
+Create a new comment on post 0
+```
+
+#### Issues
+* Security: How do you authenticate users?
+* Identity: How are ids assigned to resources?
+* Failure: How do we handle failure sitatuions?
+	* In example, handle it in JSON
+	* Could have used http status codes
+	* Most services use combination of both
+* Persistence: How are resources stored?
+
+
