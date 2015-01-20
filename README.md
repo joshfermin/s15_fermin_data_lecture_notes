@@ -183,4 +183,40 @@ Create a new comment on post 0
 	* Most services use combination of both
 * Persistence: How are resources stored?
 
+#### EXAMPLE
+* Contacts web service
+* implemented in both ruby and javascript
+* technologies used:
+	* Sinatra
+	* Rspec - Ruby testing
+	* Typhoeus - http requests (libcurl wrapper)
+	* Node - wrapper around chrome js engine (v8)
+	* Express - alike sinatra
+
+
+```ruby
+def handle_request(method, uri, data = nil)
+    url      = "#{base_uri}/#{uri}"
+    info     = { "Content-Type" => "application/json" }
+    params   = {method: method, body: data, headers: info }
+    request  = Typhoeus::Request.new(url, params)
+    request.run
+    response = request.response
+
+    raise NotConnected if response.code == 0 # not connected
+    if response.code == 200 # successful request response cycle
+      result = JSON.parse(response.body) 
+      #puts result.inspect
+      if result["status"]
+        yield result["data"]
+      else
+        raise FailureResult.new(result["error"])
+      end
+    else
+      raise NotOk
+    end
+    raise ServiceError
+  end
+```
+
 
