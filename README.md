@@ -241,7 +241,7 @@ Josh Fermin - 1/22/2015
 * git merge
 
 
-## Github
+#### Github
 * Branch
 * Commit
 * Pull Request - to add changes to production, 
