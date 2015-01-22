@@ -202,7 +202,6 @@ def handle_request(method, uri, data = nil)
     request  = Typhoeus::Request.new(url, params)
     request.run
     response = request.response
-
     raise NotConnected if response.code == 0 # not connected
     if response.code == 200 # successful request response cycle
       result = JSON.parse(response.body) 
@@ -220,3 +219,32 @@ def handle_request(method, uri, data = nil)
 ```
 
 
+
+
+
+
+
+Lecture 3
+=========
+Josh Fermin - 1/22/2015
+
+##  Git Presentation
+* Stages of file: untracked, unmodified, modified, staged, remote
+
+#### Git Commands
+* git init
+* git clone
+* git branch
+* git checkout
+* git add 
+* git commit
+* git merge
+
+
+## Github
+* Branch
+* Commit
+* Pull Request - to add changes to production, 
+* Discuss
+* Merge
+* Forking - creates a new project -> i.e. not a member of community yet, so add your changes to your own forked repo.
