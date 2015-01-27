@@ -224,7 +224,7 @@ def handle_request(method, uri, data = nil)
 
 
 
-Lecture 3
+Lecture 4
 =========
 Josh Fermin - 1/22/2015
 
@@ -248,3 +248,80 @@ Josh Fermin - 1/22/2015
 * Discuss
 * Merge
 * Forking - creates a new project -> i.e. not a member of community yet, so add your changes to your own forked repo.
+
+
+
+Lecture 5
+=========
+Josh Fermin - 1/27/2015
+
+## Node.js 
+* Most code in node is pacckaged inside of a module
+* http is a core module, provided by Node itself
+* npm (node package manager) - gives access to extend node
+
+```javascript
+// Load the http module to create an http server.
+var http = require('http');
+
+// Configure our HTTP server to respond with Hello World to all requests.
+var server = http.createServer(function (request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.end("Hello World\n");
+});
+
+// Listen on port 8000, IP defaults to 127.0.0.1
+server.listen(8000);
+
+// Put a friendly message on the terminal
+console.log("Server running at http://127.0.0.1:8000/");
+```
+
+
+#### Ex
+```javascript
+http.createServer(<function>).listen(1337, '127.0.0.1');
+```
+* returns an object with a method listen()
+	* accepts server's network interface and port
+	* starts the server running
+* functions - first class objects
+	* javascript is a functional language 
+* Anonymous function - each time server receives a request
+	* invokes this function and passes the http request and response objects
+* This particular function ignores all input and generates a simple HTTP response.
+* console.log() - printf()
+
+#### Summary
+1. Get http module
+2. Create a server; register a function; start a server.
+3. Print out a message
+
+#### Event Loop
+* In order to understand Node.js, you need to understand the event loop
+* Event based programming is a programming style where the code you write is not in control
+	* Always write handlers
+	* If this event happens... this is what I will do
+* This is how gui programs are written
+* Basic structure of all Node.js programs
+* Node tries to make it easy to add work to event queue 
+
+#### Callback Hell
+* to avoid callback hell 
+	* use named callback functions 
+	* then refer to them by name in the code that requires the callback.
+
+#### Closures
+```javascript
+var multiple = function(multiple) {
+	return multiply(num){
+		return num * multiple;
+	};
+};
+
+var byThree = multiple(3);
+var byFour = multiple(4);
+
+console.log("byThree(3): %d", byThree(3)); // prints 9
+console.log("byFour(4): %d", byFour(4));  // prints 16
+```
