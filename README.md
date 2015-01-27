@@ -325,3 +325,17 @@ var byFour = multiple(4);
 console.log("byThree(3): %d", byThree(3)); // prints 9
 console.log("byFour(4): %d", byFour(4));  // prints 16
 ```
+
+#### Node Execution Model
+* Node is single threaded - for use written code.
+* Any code you write is guaranteed to be synchronous
+* You do not have to worry about race conditions
+* IO is handled in parallel.
+	* Every event is handled sequentially
+	* Most events are small functions -> fast results (scalability)
+	* can simulate parallelism
+
+* If you issue an asynchronous call for IO
+	* call back is registered
+	* the io call is executed in a separate threads
+* Easy to implement services that run server side
