@@ -339,3 +339,21 @@ console.log("byFour(4): %d", byFour(4));  // prints 16
 	* call back is registered
 	* the io call is executed in a separate threads
 * Easy to implement services that run server side
+
+
+
+
+
+
+
+
+
+Lecture 6
+=========
+Josh Fermin - 1/29/2015
+
+## Express
+* Web application framework written in javascript for use in Node.js
+
+#### Express example 
+* In class demo...
