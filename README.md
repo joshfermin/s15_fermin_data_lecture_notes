@@ -357,3 +357,106 @@ Josh Fermin - 1/29/2015
 
 #### Express example 
 * In class demo...
+
+
+
+
+
+
+Lecture 7
+=========
+Josh Fermin - 2/3/2015
+
+## AngularJS
+* client side web application framework
+* written in Javascript for use in most web browsers
+* provides implementation of mvc
+* designed to live on top of JSON RESTful services.
+
+#### AngularJS Not for the Faint of Heart
+* very powerful, but gets complicated quick
+
+#### Core Concepts
+* Data bindings
+	* The value of an html tag be associated with a model object. When one changes, angular updates the other automatically.
+* Controllers
+	* Controllers associated with a portion of you html and define all of the state and methods that can be accessed within the section of that page
+	* Controllers MODULARIZE and DECOMPOSE data into manageable chunks.
+* Services
+	* Controllers are used to manage data for some portion of a page while it is being displayed. As you move from page to page, controllers wil lcome into and go out of existence all the time.
+	* Everytime controllers come back into existence, need to use a service if they come back multiple times. 
+		* anything that needs to be remembered between invocations are remembered by services
+		* i.e. login controller -> when creds verified user stored in service instead of controller, because controller will not remember that user is login
+* Directives
+	* Allow angular to integrate into HTML in a natural way
+	* They can also be used to create reusable components that combine controllers, data, and HTML
+* Embeddable
+	* Anuglar can control as much or as littel of a web page as you specify
+	* It is easy to embed a small Angular component into an existing page and then incrementally add new functionality over time
+* Injectable
+```javascript
+Public class Employee
+Public Employee(Database d) 
+// employee needs  a database to exist, 
+// injectable -> finds a database for you without you needing to set up database connections, etc.
+// Spring framework is an example of this that gives you dependency injections
+```
+	* Rather than using a main routine to connect everything together, angular controllers and services declare their dependencies up front
+	* Then at angular run-time it looks for dependencies and injects them into the component that needs them
+
+#### Modules
+* Module is the primary way to package upa  set of controllers into an Angular application
+* To Create a module: give name and list dependencies
+``` javascript
+angular.module('contactsApp', [])
+```
+* Creates a module called contactsApp; with no dependencies
+```javascript
+angular.module('contactsApp')
+```
+* When you created a module, you can gain a handle to it by calling angular.module
+* When you have defined a module yo ucan tell angular where it lives in the html like this:
+```javascript
+<html ng-app="contactsApp">
+</html>
+```
+
+#### Controllers
+* To do something in angular, you need a controller.
+* Declared using controller function:
+```javascript
+angular.module('contactsApp').controller('MainController', [<dependencies and code>])
+```
+* second param is an array that allows controller to declare its dependencies
+```javascript
+angular.module('contactsApp').controller('MainController', [function() {
+  var self    = this;
+  self.name   = "Ken Anderson";
+  self.update = function() {
+    self.name = "Kenneth M. Anderson";
+  };
+}]);
+```
+* Anything defined on <i>this</i> is available to the HTML that makes use of the controller.
+</br>
+* here is an example of using dependencies
+```javascript
+<MODULE>.controller('MainController', ['$http', function($http) {
+  var self    = this;
+  self.name   = "Ken Anderson";
+  self.update = function() {
+    return $http.get('/api/1.0/update_name').then(function(response) { 
+      self.name = response.data.new_name;
+      return response;
+    });
+  };
+}]);
+```
+* Create a controller that requires use of ANgulars build-in http module.
+* Event lifecycle
+	* http get -> returns a promise
+	* pass a function, gives a response.
+	* inside function do what you want with the response
+	* can chain these things... i.e. .then().then()....
+
+Sidenote: Angular is client side - mvc all in client (server plays support role, html stored in server/services), whereas in Rails mvc is in server side.
