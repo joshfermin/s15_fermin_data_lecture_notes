@@ -458,5 +458,28 @@ angular.module('contactsApp').controller('MainController', [function() {
 	* pass a function, gives a response.
 	* inside function do what you want with the response
 	* can chain these things... i.e. .then().then()....
+```javascript
+var age = 22 // private var
+this.age = 22 // public var
+```
+#### AngularJS Hello World
 
+```javascript
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+  </head>
+  <body ng-app>
+    <h1>Hello {{name}}</h1>
+    <input type="text" ng-model="name" placeholder="First Name">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+  </body>
+</html>
+```
+
+#### Directive examples:
+* ng-show: display an HTML element if condition is true
+* ng-hide: hide an HTML element
+* 
 Sidenote: Angular is client side - mvc all in client (server plays support role, html stored in server/services), whereas in Rails mvc is in server side.
