@@ -483,3 +483,26 @@ this.age = 22 // public var
 * ng-hide: hide an HTML element
 * 
 Sidenote: Angular is client side - mvc all in client (server plays support role, html stored in server/services), whereas in Rails mvc is in server side.
+
+
+Lecture 9
+=========
+Josh Fermin - 2/10/2015
+
+## this Keyword
+* the value of this is determined on how you call it.
+* implicit binding, explicit binding, etc.
+
+## requireJS
+* kicks off loading of app specific code
+* requireJS then starts to look at dependencies and starts to execute them in order
+* requireJS can configure things like:
+	* bootstrap
+	* angular
+	* ngRoute
+	* jQuery
+* requireJS also lets you load js that you wrote such as:
+	* routes.js
+	* /controllers
+
+## Twitter 
