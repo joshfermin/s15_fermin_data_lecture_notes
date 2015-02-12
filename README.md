@@ -504,5 +504,14 @@ Josh Fermin - 2/10/2015
 * requireJS also lets you load js that you wrote such as:
 	* routes.js
 	* /controllers
+	
+Lecture 10 
+=========
+Josh Fermin - 2/12/2015 
 
-## Twitter 
+## Twitter - Consumer Keys, Access Tokens
+* OAuth allows app to act on behalf of users 
+	* i.e. post tweets etc
+* Might ship your application with consumer keys.
+* When user launches app, send them to twitter to login and grant access
+* Twitter will then send an access token/secret for application to store on behalf
