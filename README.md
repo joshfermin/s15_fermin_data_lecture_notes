@@ -515,3 +515,50 @@ Josh Fermin - 2/12/2015
 * Might ship your application with consumer keys.
 * When user launches app, send them to twitter to login and grant access
 * Twitter will then send an access token/secret for application to store on behalf
+
+
+Lecture 11
+=========
+Josh Fermin - 2/17/2015
+
+## TwitterRequest 
+* is the top level class of a tweet
+* contains helpers:
+	* logging
+	* rates
+	* params
+	* props
+
+#### Contract
+* TwitterRequest has a public collect method that yields data back to its caller.
+* Subclasses of twitterequest need:
+	* url 
+	* request_name
+	* twitter_endpoint -> rate limits
+	* success -> handler for successful response for twitter
+* Subclasses may implement:
+	* error
+	* authorization
+
+#### Rates
+* ensures that rates are checked on each request
+```ruby
+def make_request
+  check_rates
+  request = Typhoeus::Request.new(url, options)
+  log.info("REQUESTING: #{request.base_url}?#{display_params}")
+  response = request.run
+  @rate_count = @rate_count - 1
+  response
+end
+
+def check_rates
+  refresh_rates if @@rates.size == 0
+  refresh_rates if Time.now > twitter_window
+  return if @rate_count > 0
+  delta = twitter_window - Time.now
+  log.info "Sleeping for #{delta} seconds"
+  sleep delta
+  refresh_rates
+end
+```
