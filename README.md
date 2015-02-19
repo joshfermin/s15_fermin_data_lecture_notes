@@ -562,3 +562,27 @@ def check_rates
   refresh_rates
 end
 ```
+
+
+Lecture 12
+=========
+Josh Fermin - 2/19/2015
+
+## Web Analytics Application - Scaling Problems
+* Problem: Can't keep up with write demand, which affects read requests
+* Not a perfect solution: Batch updates to database after getting some amount requests. 
+	* Add a queue between web server and a database. Attach a signle worker to queue and that will start working on the queue.
+	* Problem -> even if you have 20 different workers you still have a bottleneck, the database. It cannot handle the load that the workers want to do.
+* Not a perfect solution: Vertically scaling -> will fail at some point and takes a lot of money.
+	* Doesn't solve underlying problem i.e. one machine that is the bottle neck
+* In relational world -> to solve, shard the databse.
+	1. need multiple copies of the database 
+	2. then partition your data across those databases with a partition strategy
+		* Often take an Md5 hash of some aspect of the input data and then mod that value by the number of shards
+		* Then write data to indicated shard
+		* Do the same thing for reads to locate the data needed to fill request
+	3. NOTE: need a good hash function that distributes the reads and writes evenly
+* Problems:
+	* Sharding is application level -> you have to manage number of shards
+	* If shards changes, have to remap entire db and turn your app off.
+	* if you make a mistake when resharding, takes time to fix.
