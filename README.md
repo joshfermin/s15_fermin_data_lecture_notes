@@ -586,3 +586,54 @@ Josh Fermin - 2/19/2015
 	* Sharding is application level -> you have to manage number of shards
 	* If shards changes, have to remap entire db and turn your app off.
 	* if you make a mistake when resharding, takes time to fix.
+
+## NoSQL to the rescue
+* NoSQL db avoid mutable data
+	* Can't lose correct data because once written, it is immutable and cant be updated
+	* if a val changes write a new immutable copy
+* Fault tolerance
+	* if disk error occurs, NoSQL db switches to its replica automatically
+	* reshards db automatically
+	* when old machine comes back and it reshards again.
+	* can expect performance to go down while rebalancing occurs
+
+## Types of NoSQL DBs
+* Key Value
+* Graphs
+* Columnar
+* Documents
+
+#### Key Value
+* Key value is a simple database that when presented with a string (key) returns an arbitrarily large set of data (value)
+* Have no query language. Just act like hash tables.
+* Vals are untyped, you can store any type of data in these databases
+* Benefits -> simplicity
+
+#### Graph Stores
+* store graph structures rather than table/row/column
+* probide structural query languages
+	* examples: find all pairs of person nodes who have at least 3 children together, live in CO, married more than 15 years
+* provide ability to do graph traversals efficiently
+* Examples -> Neo4J, Titan, Infinite Graph, Info Grid
+
+#### Columnar Store
+* Column family stores
+* able to scale to enormous amounts of data
+* often able to achieve very fast writes, while also maintaining reasonable read performance
+	* Column Family: table of related data
+	* Colum families consist of rows that have unique row keys
+	* Rows consist of columns (potentially millions of them)
+	* Columns consist of a key and a value
+	* Value itself might be a JSON map that in turn has keys and values
+* Hash tables all the way down
+* tries its best to keep a whole row on disc so that its a single stream -> only thing holding it down network latency and disc latency
+
+#### Document stores
+* Like key-value but a little more structure
+* insert documents ( a bag of key-value pairs )
+* each document gets indexed in a variety of ways
+* docs can be found via queries on any attr
+* documents can be grouped into collecitons
+* collections can be grouped into databases
+* Each database is then used by a particular applicaiton to get its work done
+
