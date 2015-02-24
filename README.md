@@ -44,6 +44,11 @@ Teams of people within each step.
 
 
 
+
+
+
+
+
 Lecture 2
 =========
 Josh Fermin - 1/15/2015
@@ -110,6 +115,13 @@ end
 * Ids 
 * input/output
 * errors
+
+
+
+
+
+
+
 
 
 
@@ -224,6 +236,10 @@ def handle_request(method, uri, data = nil)
 
 
 
+
+
+
+
 Lecture 4
 =========
 Josh Fermin - 1/22/2015
@@ -248,6 +264,14 @@ Josh Fermin - 1/22/2015
 * Discuss
 * Merge
 * Forking - creates a new project -> i.e. not a member of community yet, so add your changes to your own forked repo.
+
+
+
+
+
+
+
+
 
 
 
@@ -348,6 +372,8 @@ console.log("byFour(4): %d", byFour(4));  // prints 16
 
 
 
+
+
 Lecture 6
 =========
 Josh Fermin - 1/29/2015
@@ -357,6 +383,10 @@ Josh Fermin - 1/29/2015
 
 #### Express example 
 * In class demo...
+
+
+
+
 
 
 
@@ -485,6 +515,15 @@ this.age = 22 // public var
 Sidenote: Angular is client side - mvc all in client (server plays support role, html stored in server/services), whereas in Rails mvc is in server side.
 
 
+
+
+
+
+
+
+
+
+
 Lecture 9
 =========
 Josh Fermin - 2/10/2015
@@ -515,6 +554,19 @@ Josh Fermin - 2/12/2015
 * Might ship your application with consumer keys.
 * When user launches app, send them to twitter to login and grant access
 * Twitter will then send an access token/secret for application to store on behalf
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Lecture 11
@@ -562,6 +614,15 @@ def check_rates
   refresh_rates
 end
 ```
+
+
+
+
+
+
+
+
+
 
 
 Lecture 12
@@ -637,3 +698,68 @@ Josh Fermin - 2/19/2015
 * collections can be grouped into databases
 * Each database is then used by a particular applicaiton to get its work done
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lecture 13
+=========
+Josh Fermin - 2/24/2015
+
+## CouchDB
+* Document Database
+	* Implemented in Erlang. Lot of use in telecommunications
+	* Massive concurrency, fault tolerance, distributed systems
+	* All of these features are on display in the design of CouchDB
+* CouchDB's design embraces the web
+	* High availability trades consistency for EVENTUAL consistency
+
+#### Document Model
+* Document databases: self-contained data
+* CouchDB stores documents
+* Each document contains everything that might be needed by an application.
+	* Avoid foreign keys etc, each document meant to stand on its own.
+	* Usually no references
+* No schema enforced, each document can have a different set of attributes
+
+#### CAP Theorem - PICK 2
+* Consistency -> All clients see the same data even in the presence of concurrent updates.
+* Availability -> All clients able to read or write the data store when they want
+* Partition Tolerance -> DB can be split across multiple servers
+
+#### Choices
+1. Consistency and Availability -> what relational dbs provide, low partition tolerance.
+2. Availiability and Partition Tolerance -> Provides the ability to scale horizontally and always be abailible for requests. 
+	* Can only guarantee eventual consistency
+	* 3 clients issue same query and get different results -> can design around this
+	* i.e. don't really need total consistency all the time (facebook likes)
+3. Consistency and Partition Tolerance -> provide consistency across multiple dbs, but not always available for client requests 
+
+**Couch DB choose the second option**
+
+#### Specifics
+* CouchDB uses B-tree storage engine.
+	* allows searches, insertions, and deletions in log time.
+* Employs MapReduce over B-Tree to compute _views_ of the data allowing for parallel and incremental computation.
+* No Locking
+	* same idea that git uses -> multiple users can edit a repo.
+	* Each read of a doc returns a version of the document that was the latest when read started
+	* document can be written while it is being read, the next read will then return the new document
+* Validation -> validation functions can be written in javascript
+	* Each time an update for a document is submitted the proposed change is passed to the validation function
+	* the validation function then chooses to accept or deny the update
+* Merge Conflicts
+	* Can encounter merge conflicts.
